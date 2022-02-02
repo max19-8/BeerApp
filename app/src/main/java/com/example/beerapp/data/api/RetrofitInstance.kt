@@ -7,9 +7,6 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitInstance {
-    companion object{
-       const val BASE_URL = "https://api.punkapi.com/v2/beers?page=1&per_page=1"
-    }
 
     private val retrofit by lazy {
         val httpLoginInterceptor = HttpLoggingInterceptor()
@@ -21,8 +18,13 @@ class RetrofitInstance {
 
         Retrofit.Builder()
             .baseUrl(BASE_URL)
+            .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
+    }
+
+    companion object{
+       private const val BASE_URL = "https://api.punkapi.com"
     }
 }

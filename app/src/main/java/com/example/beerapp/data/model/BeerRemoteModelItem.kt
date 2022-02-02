@@ -1,25 +1,22 @@
 package com.example.beerapp.data.model
 
+import com.google.gson.annotations.SerializedName
+
 data class BeerRemoteModelItem(
-    val abv: Double,
-    val attenuation_level: Int,
-    val boil_volume: BoilVolume,
-    val brewers_tips: String,
-    val contributed_by: String,
-    val description: String,
-    val ebc: Int,
-    val first_brewed: String,
-    val food_pairing: List<String>,
-    val ibu: Int,
+    @SerializedName("id")
     val id: Int,
-    val image_url: String,
-    val ingredients: Ingredients,
-    val method: Method,
+    @SerializedName("name")
     val name: String,
-    val ph: Double,
-    val srm: Int,
+    @SerializedName("tagline")
     val tagline: String,
-    val target_fg: Int,
-    val target_og: Int,
-    val volume: Volume
+    @SerializedName("first_brewed")
+    val firstBrewed: String,
+    @SerializedName("description")
+    val description: String,
+    @SerializedName("image_url")
+    val imageUrl: String,
+    @SerializedName("abv")
+    val strengthDrinks: Double,
+    @SerializedName("ph")
+    val hydrogenIndex: Double,
 )
