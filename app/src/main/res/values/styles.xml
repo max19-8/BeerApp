@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="SplashTheme" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/black</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash</item>
+        <item name="splashScreenIconSize">@dimen/splashscreen_icon_size</item>
+        <item name="postSplashScreenTheme">@style/Theme.BeerApp</item>
+    </style>
+</resources>
