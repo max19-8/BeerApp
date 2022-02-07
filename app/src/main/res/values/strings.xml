@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BeerApp</string>
+    <string name="alcohol_content_text">alcohol content: %1$s%%</string>
+    <string name="image_beer_description">image beer</string>
 </resources>

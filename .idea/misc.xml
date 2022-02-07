@@ -5,10 +5,13 @@
       <map>
         <entry key="..\:/Users/user/AndroidStudioProjects/BeerApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.202" />
         <entry key="..\:/Users/user/AndroidStudioProjects/BeerApp/app/src/main/res/drawable/ic_baseline_baby_changing_station_24.xml" value="0.2315" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/BeerApp/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/BeerApp/app/src/main/res/drawable/image_berder.xml" value="0.2315" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/BeerApp/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/user/AndroidStudioProjects/BeerApp/app/src/main/res/layout/activity_splash.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/user/AndroidStudioProjects/BeerApp/app/src/main/res/layout/activity_splash_screen.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/BeerApp/app/src/main/res/layout/beer_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/BeerApp/app/src/main/res/layout/beer_item.xml" value="0.1" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/BeerApp/app/src/main/res/layout/fragment_list_beer.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/BeerApp/app/src/main/res/layout/item_progress.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/user/AndroidStudioProjects/BeerApp/app/src/main/res/layout/splash.xml" value="0.36666666666666664" />
       </map>
     </option>
