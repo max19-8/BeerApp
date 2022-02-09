@@ -18,12 +18,7 @@ class BeerListAdapter(private val onBeerClickListener: OnBeerClickListener) :
             holder.binds(currentItem)
             holder.itemView.setOnClickListener {
                 onBeerClickListener.onBeerClick(
-                    currentItem.id,
-                    currentItem.name,
-                    currentItem.description,
-                    currentItem.strengthDrinks.toFloat(),
-                    currentItem.imageUrl,
-                    currentItem.hydrogenIndex.toFloat()
+                    currentItem
                 )
             }
         }

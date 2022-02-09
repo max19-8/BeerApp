@@ -1,5 +1,7 @@
 package com.example.beerapp.presentation.adapter
 
+import com.example.beerapp.presentation.model.BeerPresentationModelItem
+
 interface OnBeerClickListener {
-   fun onBeerClick(beerId:Int,beerName:String,description:String,strengthDrinks:Float,imageUrl:String,hydrogenIndex:Float)
+    fun onBeerClick(beer: BeerPresentationModelItem)
 }

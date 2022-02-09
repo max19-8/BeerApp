@@ -1,5 +1,9 @@
 package com.example.beerapp.presentation.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class BeerPresentationModelItem(
     val id: Int,
     val name: String,
@@ -9,5 +13,4 @@ data class BeerPresentationModelItem(
     val imageUrl: String,
     val strengthDrinks: Double,
     val hydrogenIndex: Double,
-) {
-}
+):Parcelable

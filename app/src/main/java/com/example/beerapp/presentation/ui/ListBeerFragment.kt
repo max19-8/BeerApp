@@ -1,6 +1,7 @@
 package com.example.beerapp.presentation.ui
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
@@ -12,23 +13,32 @@ import com.example.beerapp.databinding.FragmentListBeerBinding
 import com.example.beerapp.presentation.adapter.BeerListAdapter
 import com.example.beerapp.presentation.adapter.BeersLoaderStateAdapter
 import com.example.beerapp.presentation.adapter.OnBeerClickListener
+import com.example.beerapp.presentation.model.BeerPresentationModelItem
 import com.example.beerapp.presentation.viewmodel.ListBeerViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ListBeerFragment : BaseFragment<FragmentListBeerBinding>(), OnBeerClickListener {
+class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
     private val viewModel: ListBeerViewModel by viewModel()
     private var beerAdapter: BeerListAdapter? = null
 
     override fun getViewBinding(): FragmentListBeerBinding =
         FragmentListBeerBinding.inflate(layoutInflater)
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        beerAdapter = BeerListAdapter(this)
+        beerAdapter = BeerListAdapter(object : OnBeerClickListener {
+            override fun onBeerClick(
+                beer: BeerPresentationModelItem
+            ) {
+                val action = ListBeerFragmentDirections.actionListBeerFragmentToDetailFragment3(
+                    beer
+                )
+                findNavController().navigate(action)
+            }
+        })
         updateAdapter()
         loadData()
     }
@@ -61,24 +71,5 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>(), OnBeerClickLis
                 footer = BeersLoaderStateAdapter()
             )
         }
-    }
-
-    override fun onBeerClick(
-        beerId: Int,
-        beerName: String,
-        description: String,
-        strengthDrinks: Float,
-        imageUrl: String,
-        hydrogenIndex: Float
-    ) {
-        val action = ListBeerFragmentDirections.actionListBeerFragmentToDetailFragment3(
-            beerId,
-            beerName,
-            description,
-            strengthDrinks,
-            imageUrl,
-            hydrogenIndex
-        )
-        findNavController().navigate(action)
     }
 }

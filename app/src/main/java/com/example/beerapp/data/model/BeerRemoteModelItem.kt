@@ -1,10 +1,13 @@
 package com.example.beerapp.data.model
 
+import android.os.Parcelable
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.example.beerapp.presentation.model.BeerPresentationModelItem
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class BeerRemoteModelItem(
     @SerializedName("id")
     val id: Int,
@@ -22,7 +25,7 @@ data class BeerRemoteModelItem(
     val strengthDrinks: Double,
     @SerializedName("ph")
     val hydrogenIndex: Double,
-)
+) :Parcelable
 
 fun PagingData<BeerRemoteModelItem>.toPresentationBeer() = map {
     BeerPresentationModelItem(

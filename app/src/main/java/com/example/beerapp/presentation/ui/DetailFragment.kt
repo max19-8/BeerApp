@@ -33,17 +33,20 @@ class DetailFragment : BottomSheetDialogFragment() {
 
     private fun updateUI() {
         with(binding) {
-            textViewDetailName.text = args.beerName
-            strengthBeerTextViewDetail.text =
-                context?.getString(R.string.alcohol_content_text, args.strengthDrinks.toString())
-            hydrogenIndexTextViewDetail.text =
-                context?.getString(R.string.hydrogen_index_text, args.hydrogenIndex.toString())
-            textViewDetailDescription.text = args.description
-            Glide.with(requireContext())
-                .load(args.imageUrl)
-                .fitCenter()
-                .error(R.drawable.ic_launcher_background)
-                .into(imageViewDetail)
+            with(args.beer) {
+                textViewDetailName.text = name
+                strengthBeerTextViewDetail.text =
+                    context?.getString(R.string.alcohol_content_text, strengthDrinks.toString())
+                hydrogenIndexTextViewDetail.text =
+                    context?.getString(R.string.hydrogen_index_text, hydrogenIndex.toString())
+                textViewDetailDescription.text = description
+                Glide.with(requireContext())
+                    .load(imageUrl)
+                    .fitCenter()
+                    .error(R.drawable.ic_launcher_background)
+                    .into(imageViewDetail)
+            }
+
         }
     }
 }

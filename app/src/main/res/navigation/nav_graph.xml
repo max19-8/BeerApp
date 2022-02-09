@@ -19,22 +19,8 @@
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
         <argument
-            android:name="beerId"
-            app:argType="integer"/>
-        <argument
-            android:name="beerName"
-            app:argType="string"/>
-        <argument
-            android:name="description"
-            app:argType="string"/>
-        <argument
-            android:name="strengthDrinks"
-            app:argType="float"/>
-        <argument
-            android:name="imageUrl"
-            app:argType="string"/>
-        <argument
-            android:name="hydrogenIndex"
-            app:argType="float"/>
+            android:name="beer"
+            app:argType="com.example.beerapp.presentation.model.BeerPresentationModelItem"/>
+
     </dialog>
 </navigation>
