@@ -4,4 +4,5 @@
     <dimen name="small_margin">8dp</dimen>
     <dimen name="card_view_corner">16dp</dimen>
     <dimen name="image_view_size">80dp</dimen>
+    <dimen name="text_size_detail">18sp</dimen>
 </resources>

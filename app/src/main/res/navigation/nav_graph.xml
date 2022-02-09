@@ -8,5 +8,33 @@
         android:id="@+id/listBeerFragment"
         android:name="com.example.beerapp.presentation.ui.ListBeerFragment"
         android:label="fragment_list_beer"
-        tools:layout="@layout/fragment_list_beer"/>
+        tools:layout="@layout/fragment_list_beer">
+        <action
+            android:id="@+id/action_listBeerFragment_to_detailFragment3"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/detailFragment"
+        android:name="com.example.beerapp.presentation.ui.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="beerId"
+            app:argType="integer"/>
+        <argument
+            android:name="beerName"
+            app:argType="string"/>
+        <argument
+            android:name="description"
+            app:argType="string"/>
+        <argument
+            android:name="strengthDrinks"
+            app:argType="float"/>
+        <argument
+            android:name="imageUrl"
+            app:argType="string"/>
+        <argument
+            android:name="hydrogenIndex"
+            app:argType="float"/>
+    </dialog>
 </navigation>
