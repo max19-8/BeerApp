@@ -8,12 +8,12 @@ import com.example.beerapp.di.presentationModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
-class BeerApplication:Application() {
+class BeerApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         startKoin {
             androidContext(this@BeerApplication)
-            modules(listOf(appModule, dataModule, domainModule,presentationModule))
+            modules(listOf(appModule, dataModule, domainModule, presentationModule))
         }
     }
 }

@@ -5,8 +5,6 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.beerapp.data.api.ApiService
 import com.example.beerapp.data.model.BeerRemoteModelItem
-import retrofit2.HttpException
-import java.io.IOException
 
 private const val STARTING_PAGE_INDEX = 1
 
@@ -25,7 +23,6 @@ class BeerPagingSource(private val apiService: ApiService) :
         return try {
             val response = apiService.getBeersListByPage(page, pageSize)
             Log.d("BeerPagingSource", "$response")
-
             val nextKey = if (response.size < pageSize) null else page + 1
             val prevKey = if (page == STARTING_PAGE_INDEX) null else page - 1
             Log.d("BeerPagingSource", "$response")
@@ -34,11 +31,8 @@ class BeerPagingSource(private val apiService: ApiService) :
                 prevKey,
                 nextKey
             )
-        } catch (exception: IOException) {
-            LoadResult.Error(exception)
-        } catch (exception: HttpException) {
+        } catch (exception: Exception) {
             LoadResult.Error(exception)
         }
     }
 }
-

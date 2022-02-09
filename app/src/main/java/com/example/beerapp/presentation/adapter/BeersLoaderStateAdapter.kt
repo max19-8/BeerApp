@@ -22,7 +22,7 @@ class BeersLoaderStateAdapter : LoadStateAdapter<BeersLoaderStateAdapter.ItemVie
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState): ItemViewHolder {
-        return when(loadState) {
+        return when (loadState) {
             LoadState.Loading -> ProgressViewHolder(LayoutInflater.from(parent.context), parent)
             is LoadState.Error -> ErrorViewHolder(LayoutInflater.from(parent.context), parent)
             is LoadState.NotLoading -> error("Not supported")
@@ -40,7 +40,7 @@ class BeersLoaderStateAdapter : LoadStateAdapter<BeersLoaderStateAdapter.ItemVie
         abstract fun bind(loadState: LoadState)
     }
 
-    class ProgressViewHolder  constructor(
+    class ProgressViewHolder constructor(
         binding: ItemProgressBinding
     ) : ItemViewHolder(binding.root) {
 
@@ -66,7 +66,7 @@ class BeersLoaderStateAdapter : LoadStateAdapter<BeersLoaderStateAdapter.ItemVie
         }
     }
 
-    class ErrorViewHolder  constructor(
+    class ErrorViewHolder constructor(
         private val binding: ItemErrorBinding
     ) : ItemViewHolder(binding.root) {
 
@@ -76,7 +76,6 @@ class BeersLoaderStateAdapter : LoadStateAdapter<BeersLoaderStateAdapter.ItemVie
         }
 
         companion object {
-
             operator fun invoke(
                 layoutInflater: LayoutInflater,
                 parent: ViewGroup? = null,

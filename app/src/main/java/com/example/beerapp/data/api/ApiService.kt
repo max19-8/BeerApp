@@ -9,6 +9,5 @@ interface ApiService {
     suspend fun getBeersListByPage(
         @Query("page") page: Int,
         @Query("per_page") perPage: Int
-    ): ArrayList<BeerRemoteModelItem>
+    ): List<BeerRemoteModelItem>
 }
-

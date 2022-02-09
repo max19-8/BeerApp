@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 val appModule = module {
     single { provideOkHttpClient() }
-    single { provideRetrofit( okHttpClient = get()) }
+    single { provideRetrofit(okHttpClient = get()) }
     single { provideApiService(retrofit = get()) }
 }
 
@@ -17,8 +17,8 @@ private fun provideOkHttpClient(): OkHttpClient {
     val loggingInterceptor = HttpLoggingInterceptor()
     loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
     return OkHttpClient.Builder()
-         .addInterceptor(loggingInterceptor)
-         .build()
+        .addInterceptor(loggingInterceptor)
+        .build()
 }
 
 private fun provideRetrofit(
@@ -32,6 +32,3 @@ private fun provideRetrofit(
 
 private fun provideApiService(retrofit: Retrofit): ApiService =
     retrofit.create(ApiService::class.java)
-
-
-

@@ -9,8 +9,9 @@ import com.bumptech.glide.Glide
 import com.example.beerapp.R
 import com.example.beerapp.data.model.BeerRemoteModelItem
 import com.example.beerapp.databinding.BeerItemBinding
+import com.example.beerapp.presentation.model.BeerPresentationModelItem
 
-class BeerListAdapter : PagingDataAdapter<BeerRemoteModelItem,BeerListAdapter.BeerViewHolder>(Diff()) {
+class BeerListAdapter : PagingDataAdapter<BeerPresentationModelItem,BeerListAdapter.BeerViewHolder>(Diff()) {
     override fun onBindViewHolder(holder: BeerViewHolder, position: Int) {
         val currentItem = getItem(position)
         if(currentItem!= null){
@@ -24,7 +25,7 @@ class BeerListAdapter : PagingDataAdapter<BeerRemoteModelItem,BeerListAdapter.Be
     }
 
     class BeerViewHolder(private val binding:BeerItemBinding) : RecyclerView.ViewHolder(binding.root){
-        fun binds(beer: BeerRemoteModelItem){
+        fun binds(beer: BeerPresentationModelItem){
             binding.apply {
                 Glide.with(itemView)
                     .load(beer.imageUrl)
@@ -37,11 +38,11 @@ class BeerListAdapter : PagingDataAdapter<BeerRemoteModelItem,BeerListAdapter.Be
         }
     }
 
-    class Diff : DiffUtil.ItemCallback<BeerRemoteModelItem>(){
-        override fun areItemsTheSame(oldItem: BeerRemoteModelItem, newItem: BeerRemoteModelItem): Boolean  =
+    class Diff : DiffUtil.ItemCallback<BeerPresentationModelItem>(){
+        override fun areItemsTheSame(oldItem: BeerPresentationModelItem, newItem: BeerPresentationModelItem): Boolean  =
             oldItem.id == newItem.id
 
-        override fun areContentsTheSame(oldItem: BeerRemoteModelItem, newItem:BeerRemoteModelItem): Boolean =
+        override fun areContentsTheSame(oldItem: BeerPresentationModelItem, newItem:BeerPresentationModelItem): Boolean =
             oldItem == newItem
     }
 }

@@ -9,5 +9,15 @@
         android:id="@+id/listBeerFragment"
         android:name="com.example.beerapp.presentation.ui.ListBeerFragment"
         android:label="fragment_list_beer"
-        tools:layout="@layout/fragment_list_beer" />
+        tools:layout="@layout/fragment_list_beer" >
+        <action
+            android:id="@+id/action_listBeerFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/detailFragment"
+        android:name="com.example.beerapp.presentation.ui.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail"/>
+
 </navigation>

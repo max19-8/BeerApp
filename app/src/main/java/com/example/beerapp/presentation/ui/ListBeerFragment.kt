@@ -17,15 +17,11 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
-
+    private val viewModel:ListBeerViewModel by viewModel()
+    private  var beerAdapter: BeerListAdapter? = null
 
     override fun getViewBinding(): FragmentListBeerBinding =
         FragmentListBeerBinding.inflate(layoutInflater)
-
-
-    private val viewModel:ListBeerViewModel by viewModel()
-    private lateinit var beerAdapter: BeerListAdapter
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,11 +33,12 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
 
     private fun loadData() {
         lifecycleScope.launch {
-            viewModel.getBeers.collectLatest(beerAdapter::submitData)
+            viewModel.getBeers.collectLatest{
+                beerAdapter?.submitData(it)}
         }
     }
     private fun updateAdapter() {
-        beerAdapter.addLoadStateListener {state: CombinedLoadStates ->
+        beerAdapter?.addLoadStateListener {state: CombinedLoadStates ->
             val refreshState = state.refresh
             binding.beerRecyclerView.isVisible = refreshState != LoadState.Loading
             binding.progress.isVisible = refreshState == LoadState.Loading
@@ -53,12 +50,10 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
         binding.beerRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
-            adapter = beerAdapter.withLoadStateHeaderAndFooter(
+            adapter = beerAdapter?.withLoadStateHeaderAndFooter(
                 header = BeersLoaderStateAdapter(),
                 footer = BeersLoaderStateAdapter()
             )
         }
     }
 }
-
-

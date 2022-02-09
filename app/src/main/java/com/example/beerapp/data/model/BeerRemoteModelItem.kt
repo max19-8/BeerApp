@@ -1,5 +1,8 @@
 package com.example.beerapp.data.model
 
+import androidx.paging.PagingData
+import androidx.paging.map
+import com.example.beerapp.presentation.model.BeerPresentationModelItem
 import com.google.gson.annotations.SerializedName
 
 data class BeerRemoteModelItem(
@@ -20,3 +23,13 @@ data class BeerRemoteModelItem(
     @SerializedName("ph")
     val hydrogenIndex: Double?,
 )
+    fun PagingData<BeerRemoteModelItem>.toPresentationBeer()= map {
+        BeerPresentationModelItem(
+            id = it.id,
+            name = it.name,
+            tagline = it.tagline,
+            firstBrewed = it.firstBrewed,
+            description = it.description,
+            imageUrl = it.imageUrl,
+            strengthDrinks = it.strengthDrinks, hydrogenIndex = it.hydrogenIndex)
+}
