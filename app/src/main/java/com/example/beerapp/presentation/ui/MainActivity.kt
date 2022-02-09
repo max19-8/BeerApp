@@ -1,4 +1,4 @@
-package com.example.beerapp.presentation
+package com.example.beerapp.presentation.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
