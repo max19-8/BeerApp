@@ -33,13 +33,4 @@
         <item name="android:textStyle">italic</item>
         <item name="android:textColor">@color/white</item>
     </style>
-
-    <style name="MyCustomTheme" parent="@android:style/Theme.Panel">
-        <item name="android:windowAnimationStyle">@style/MyAnimation.Window</item>
-    </style>
-
-    <style name="MyAnimation.Window" parent="@android:style/Animation.Activity">
-        <item name="android:windowEnterAnimation">@anim/zoom_in</item>
-        <item name="android:windowExitAnimation">@anim/zoom_out</item>
-    </style>
 </resources>

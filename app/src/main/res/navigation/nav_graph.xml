@@ -16,9 +16,6 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
-            android:id="@+id/action_listBeerFragment_to_dialogRandomFragment"
-            app:destination="@id/dialogRandomFragment" />
     </fragment>
     <dialog
         android:id="@+id/detailFragment"
@@ -28,10 +25,6 @@
         <argument
             android:name="beer"
             app:argType="com.example.beerapp.presentation.model.BeerPresentationModelItem"/>
+
     </dialog>
-    <dialog
-        android:id="@+id/dialogRandomFragment"
-        android:name="com.example.beerapp.presentation.ui.DialogRandomFragment"
-        android:label="fragment_dialog_random"
-        tools:layout="@layout/fragment_dialog_random" />
 </navigation>

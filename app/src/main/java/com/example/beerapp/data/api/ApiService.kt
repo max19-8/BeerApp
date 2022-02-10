@@ -10,7 +10,4 @@ interface ApiService {
         @Query("page") page: Int,
         @Query("per_page") perPage: Int
     ): List<BeerRemoteModelItem>
-
-    @GET("v2/beers/random")
-    suspend fun getRandomBeer(): List<BeerRemoteModelItem>
 }

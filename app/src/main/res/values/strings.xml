@@ -5,9 +5,4 @@
     <string name="text_view_description_text">Description</string>
     <string name="hydrogen_index_text">hydrogen index: %1$s</string>
     <string name="image_beer_detail_description">image_beer_detail</string>
-    <string name="random_button_text">Random</string>
-    <string name="image_pop_up_description">image_beer_pop_up_layout</string>
-    <string name="button_ok">ok</string>
-
-
 </resources>
