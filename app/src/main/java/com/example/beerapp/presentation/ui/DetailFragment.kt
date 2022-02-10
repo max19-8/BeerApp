@@ -1,6 +1,5 @@
 package com.example.beerapp.presentation.ui
 
-import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,6 @@ import com.bumptech.glide.Glide
 import com.example.beerapp.R
 import com.example.beerapp.databinding.FragmentDetailBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.coroutines.NonCancellable.start
 
 class DetailFragment : BottomSheetDialogFragment() {
 
