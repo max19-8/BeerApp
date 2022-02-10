@@ -1,4 +1,5 @@
 package com.example.beerapp.presentation.ui
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,7 @@ import com.example.beerapp.databinding.FragmentDialogRandomBinding
 import com.example.beerapp.presentation.viewmodel.RandomBeerViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class DialogRandomFragment : DialogFragment(){
+class DialogRandomFragment : DialogFragment() {
 
     private val viewModel: RandomBeerViewModel by viewModel()
     private var _binding: FragmentDialogRandomBinding? = null
@@ -20,7 +21,12 @@ class DialogRandomFragment : DialogFragment(){
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentDialogRandomBinding.bind(inflater.inflate(R.layout.fragment_dialog_random,container))
+        _binding = FragmentDialogRandomBinding.bind(
+            inflater.inflate(
+                R.layout.fragment_dialog_random,
+                container
+            )
+        )
         return binding.root
     }
 
@@ -32,9 +38,11 @@ class DialogRandomFragment : DialogFragment(){
             dismiss()
         }
     }
-    private fun getRandomBeer() = viewModel.getRandomBeer.observe(viewLifecycleOwner){
+
+    private fun getRandomBeer() = viewModel.getRandomBeer.observe(viewLifecycleOwner) {
         binding.textViewNameBeerPopUp.text = it[0].name
-        binding.textViewAlcoholContentBeerPopUp.text = context?.getString(R.string.alcohol_content_text,it[0].strengthDrinks.toString())
+        binding.textViewAlcoholContentBeerPopUp.text =
+            context?.getString(R.string.alcohol_content_text, it[0].strengthDrinks.toString())
         Glide.with(requireContext())
             .load(it[0].imageUrl)
             .fitCenter()

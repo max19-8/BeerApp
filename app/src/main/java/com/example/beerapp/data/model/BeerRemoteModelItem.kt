@@ -10,21 +10,21 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class BeerRemoteModelItem(
     @SerializedName("id")
-    val id: Int,
+    val id: Int?,
     @SerializedName("name")
-    val name: String,
+    val name: String?,
     @SerializedName("tagline")
-    val tagline: String,
+    val tagline: String?,
     @SerializedName("first_brewed")
-    val firstBrewed: String,
+    val firstBrewed: String?,
     @SerializedName("description")
-    val description: String,
+    val description: String?,
     @SerializedName("image_url")
-    val imageUrl: String,
+    val imageUrl: String?,
     @SerializedName("abv")
-    val strengthDrinks: Double,
+    val strengthDrinks: Double?,
     @SerializedName("ph")
-    val hydrogenIndex: Double,
+    val hydrogenIndex: Double?,
 ) :Parcelable
 
 fun PagingData<BeerRemoteModelItem>.toPresentationBeer() = map {
@@ -38,3 +38,13 @@ fun PagingData<BeerRemoteModelItem>.toPresentationBeer() = map {
         strengthDrinks = it.strengthDrinks, hydrogenIndex = it.hydrogenIndex
     )
 }
+fun BeerRemoteModelItem.toPresentationBeer()=
+    BeerPresentationModelItem(
+        id = this.id,
+        name = this.name,
+        tagline = this.tagline,
+        firstBrewed = this.firstBrewed,
+        description = this.description,
+        imageUrl = this.imageUrl,
+        strengthDrinks = this.strengthDrinks,
+        hydrogenIndex = this.hydrogenIndex)

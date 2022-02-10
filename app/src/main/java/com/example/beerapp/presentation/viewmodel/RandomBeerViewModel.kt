@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.beerapp.domain.GetRandomBeerUseCase
 import com.example.beerapp.presentation.model.BeerPresentationModelItem
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class RandomBeerViewModel(private val getRandomBeerUseCase: GetRandomBeerUseCase) : ViewModel() {

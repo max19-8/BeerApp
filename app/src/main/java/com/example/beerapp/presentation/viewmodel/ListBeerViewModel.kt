@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.beerapp.data.model.BeerRemoteModelItem
 import com.example.beerapp.domain.GetListBeerUseCase
 import com.example.beerapp.presentation.model.BeerPresentationModelItem
 import kotlinx.coroutines.flow.Flow

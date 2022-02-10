@@ -1,11 +1,9 @@
 package com.example.beerapp.presentation.ui
 
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,9 +34,12 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
                 val action = ListBeerFragmentDirections.actionListBeerFragmentToDetailFragment(
                     beer
                 )
-               navigate(action)
+                navigate(action)
             }
         })
+        binding.buttonRandom.setOnClickListener {
+            navigate(ListBeerFragmentDirections.actionListBeerFragmentToDialogRandomFragment())
+        }
         updateAdapter()
         loadData()
     }
