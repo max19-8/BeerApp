@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.ui.DetailFragment">
+
+    <TextView
+        android:id="@+id/text_view_description"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:text="@string/text_view_description_text"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:textColor="@color/black"
+        style="@style/text_view_detail" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_description" />
+
+    <ImageView
+        android:id="@+id/image_view_detail"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_margin="@dimen/small_margin"
+        android:adjustViewBounds="true"
+        android:background="@drawable/border_beer_image"
+        android:scaleType="centerInside"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        android:contentDescription="@string/image_beer_detail_description" />
+
+    <TextView
+        android:id="@+id/text_view_detail_name"
+        app:layout_constraintStart_toEndOf="@id/image_view_detail"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        tools:color = "@color/black"
+        tools:text="Name"
+        style="@style/text_view_detail" />
+
+    <TextView
+        android:id="@+id/strength_beer_text_view_detail"
+        app:layout_constraintStart_toEndOf="@id/image_view_detail"
+        app:layout_constraintTop_toBottomOf="@id/text_view_detail_name"
+        tools:text="alcohol content:"
+        style="@style/text_view_detail" />
+
+    <TextView
+        android:id="@+id/hydrogen_index_text_view_detail"
+        app:layout_constraintStart_toEndOf="@id/image_view_detail"
+        app:layout_constraintTop_toBottomOf="@+id/strength_beer_text_view_detail"
+        tools:text="hydrogen index:"
+        style="@style/text_view_detail" />
+
+    <TextView
+        android:id="@+id/text_view_detail_description"
+        android:paddingHorizontal="@dimen/app_margin"
+        android:layout_marginHorizontal="@dimen/app_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_view_detail"
+        tools:text="description"
+        style="@style/text_view_detail" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@
     <string name="app_name">BeerApp</string>
     <string name="alcohol_content_text">alcohol content: %1$s%%</string>
     <string name="image_beer_description">image beer</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_view_description_text">Description</string>
+    <string name="hydrogen_index_text">hydrogen index: %1$s</string>
+    <string name="image_beer_detail_description">image_beer_detail</string>
 </resources>
