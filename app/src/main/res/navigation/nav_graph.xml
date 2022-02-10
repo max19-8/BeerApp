@@ -10,8 +10,12 @@
         android:label="fragment_list_beer"
         tools:layout="@layout/fragment_list_beer">
         <action
-            android:id="@+id/action_listBeerFragment_to_detailFragment3"
-            app:destination="@id/detailFragment" />
+            android:id="@+id/action_listBeerFragment_to_detailFragment"
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <dialog
         android:id="@+id/detailFragment"

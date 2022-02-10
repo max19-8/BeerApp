@@ -1,7 +1,7 @@
 package com.example.beerapp.presentation.ui
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.beerapp.R
 import com.example.beerapp.databinding.FragmentDetailBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.coroutines.NonCancellable.start
 
 class DetailFragment : BottomSheetDialogFragment() {
 
@@ -22,6 +23,7 @@ class DetailFragment : BottomSheetDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         _binding = FragmentDetailBinding.bind(inflater.inflate(R.layout.fragment_detail, container))
         return binding.root
     }

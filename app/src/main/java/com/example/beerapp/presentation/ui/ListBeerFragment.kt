@@ -33,10 +33,10 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
             override fun onBeerClick(
                 beer: BeerPresentationModelItem
             ) {
-                val action = ListBeerFragmentDirections.actionListBeerFragmentToDetailFragment3(
+                val action = ListBeerFragmentDirections.actionListBeerFragmentToDetailFragment(
                     beer
                 )
-                findNavController().navigate(action)
+               navigate(action)
             }
         })
         updateAdapter()
