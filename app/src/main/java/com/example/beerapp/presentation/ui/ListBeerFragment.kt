@@ -1,7 +1,6 @@
 package com.example.beerapp.presentation.ui
 
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
@@ -9,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.beerapp.R
 import com.example.beerapp.databinding.FragmentListBeerBinding
 import com.example.beerapp.presentation.adapter.BeerListAdapter
 import com.example.beerapp.presentation.adapter.BeersLoaderStateAdapter
@@ -39,6 +39,9 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
                navigate(action)
             }
         })
+        binding.buttonRandom.setOnClickListener {
+           findNavController().navigate(R.id.action_listBeerFragment_to_dialogRandomFragment)
+        }
         updateAdapter()
         loadData()
     }
