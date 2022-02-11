@@ -10,8 +10,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class RandomBeerViewModel(private val getRandomBeerUseCase: GetRandomBeerUseCase) : ViewModel() {
-    private val randomBeer = MutableLiveData<List<BeerPresentationModelItem>>()
-    val getRandomBeer: LiveData<List<BeerPresentationModelItem>>
+    private val randomBeer = MutableLiveData<BeerPresentationModelItem>()
+    val getRandomBeer: LiveData<BeerPresentationModelItem>
         get() = randomBeer
 
     init {

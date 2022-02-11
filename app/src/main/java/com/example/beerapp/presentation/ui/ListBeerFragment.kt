@@ -43,6 +43,8 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
         updateAdapter()
         loadData()
     }
+    
+
 
     private fun loadData() {
         lifecycleScope.launch {

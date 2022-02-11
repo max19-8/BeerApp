@@ -25,7 +25,7 @@ data class BeerRemoteModelItem(
     val strengthDrinks: Double?,
     @SerializedName("ph")
     val hydrogenIndex: Double?,
-) :Parcelable
+) : Parcelable
 
 fun PagingData<BeerRemoteModelItem>.toPresentationBeer() = map {
     BeerPresentationModelItem(
@@ -35,10 +35,12 @@ fun PagingData<BeerRemoteModelItem>.toPresentationBeer() = map {
         firstBrewed = it.firstBrewed,
         description = it.description,
         imageUrl = it.imageUrl,
-        strengthDrinks = it.strengthDrinks, hydrogenIndex = it.hydrogenIndex
+        strengthDrinks = it.strengthDrinks,
+        hydrogenIndex = it.hydrogenIndex
     )
 }
-fun BeerRemoteModelItem.toPresentationBeer()=
+
+fun BeerRemoteModelItem.toPresentationBeer() =
     BeerPresentationModelItem(
         id = this.id,
         name = this.name,
@@ -47,4 +49,5 @@ fun BeerRemoteModelItem.toPresentationBeer()=
         description = this.description,
         imageUrl = this.imageUrl,
         strengthDrinks = this.strengthDrinks,
-        hydrogenIndex = this.hydrogenIndex)
+        hydrogenIndex = this.hydrogenIndex
+    )

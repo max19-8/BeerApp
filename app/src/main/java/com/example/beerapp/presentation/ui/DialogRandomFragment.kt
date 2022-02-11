@@ -40,11 +40,11 @@ class DialogRandomFragment : DialogFragment() {
     }
 
     private fun getRandomBeer() = viewModel.getRandomBeer.observe(viewLifecycleOwner) {
-        binding.textViewNameBeerPopUp.text = it[0].name
+        binding.textViewNameBeerPopUp.text = it.name
         binding.textViewAlcoholContentBeerPopUp.text =
-            context?.getString(R.string.alcohol_content_text, it[0].strengthDrinks.toString())
+            context?.getString(R.string.alcohol_content_text, it.strengthDrinks.toString())
         Glide.with(requireContext())
-            .load(it[0].imageUrl)
+            .load(it.imageUrl)
             .fitCenter()
             .error(R.drawable.placeholder)
             .into(binding.imageBeerPopUp)
