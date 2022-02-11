@@ -7,5 +7,5 @@ import com.example.beerapp.presentation.model.BeerPresentationModelItem
 
 class GetRandomBeerUseCase(private val randomBeerRepositoryImpl: RandomBeerRepositoryImpl) {
     suspend fun getRandomBeer(): BeerPresentationModelItem =
-        randomBeerRepositoryImpl.getRandomBeer()[0].toPresentationBeer()
+        randomBeerRepositoryImpl.getRandomBeer().first().toPresentationBeer()
 }

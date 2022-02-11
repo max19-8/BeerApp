@@ -35,14 +35,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <SearchView
-        android:id="@+id/search_view"
-        android:background="@color/light_gray"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_random" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/beer_recycler_view"
@@ -51,7 +43,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_view" />
+        app:layout_constraintTop_toBottomOf="@id/button_random" />
 
     <ProgressBar
         android:id="@+id/progress"
