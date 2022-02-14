@@ -51,3 +51,16 @@ fun BeerRemoteModelItem.toPresentationBeer() =
         strengthDrinks = this.strengthDrinks,
         hydrogenIndex = this.hydrogenIndex
     )
+
+fun List<BeerRemoteModelItem>.toPresentationBeer() = map {
+    BeerPresentationModelItem(
+        id = it.id,
+        name = it.name,
+        tagline = it.tagline,
+        firstBrewed = it.firstBrewed,
+        description = it.description,
+        imageUrl = it.imageUrl,
+        strengthDrinks = it.strengthDrinks,
+        hydrogenIndex = it.hydrogenIndex
+    )
+}

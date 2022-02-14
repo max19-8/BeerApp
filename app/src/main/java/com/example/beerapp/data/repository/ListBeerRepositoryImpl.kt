@@ -10,12 +10,12 @@ import kotlinx.coroutines.flow.Flow
 
 class ListBeerRepositoryImpl(private val apiService: ApiService):ListBeerRepository {
 
-    override  fun getBeersListByPage() : Flow<PagingData<BeerRemoteModelItem>> =
+    override  fun getBeersListByPage(query:String) : Flow<PagingData<BeerRemoteModelItem>> =
         Pager(
             config = PagingConfig(
                 pageSize = 20,
                 enablePlaceholders = true
             ),
-            pagingSourceFactory = { BeerPagingSource(apiService) }
+            pagingSourceFactory = { BeerPagingSource(apiService,query) }
         ).flow
 }
