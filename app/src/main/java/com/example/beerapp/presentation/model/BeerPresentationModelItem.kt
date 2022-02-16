@@ -1,9 +1,6 @@
 package com.example.beerapp.presentation.model
 
 import android.os.Parcelable
-import androidx.paging.PagingData
-import androidx.paging.map
-import com.example.beerapp.data.model.BeerRemoteModelItem
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

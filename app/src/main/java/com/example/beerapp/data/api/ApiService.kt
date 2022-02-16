@@ -1,10 +1,7 @@
 package com.example.beerapp.data.api
 
-import androidx.paging.PagingData
 import com.example.beerapp.data.model.BeerRemoteModelItem
-import kotlinx.coroutines.flow.Flow
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
