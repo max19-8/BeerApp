@@ -35,15 +35,49 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/searchTextInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/app_margin"
+        android:layout_marginTop="8dp"
+        android:hint="@string/search_view_hint_text"
+        app:boxBackgroundColor="@color/light_gray"
+        app:boxStrokeColor="@color/grey"
+        app:endIconCheckable="true"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/grey"
+        android:focusableInTouchMode="true"
+        android:focusable="true"
+        app:hintTextColor="@color/grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_random"
+        app:startIconDrawable="@drawable/ic_baseline_search_24"
+        app:boxCornerRadiusBottomEnd="@dimen/app_margin"
+        app:boxCornerRadiusBottomStart="@dimen/app_margin"
+        app:boxCornerRadiusTopEnd="@dimen/app_margin"
+        app:boxCornerRadiusTopStart="@dimen/app_margin">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/searchEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:lines="1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/beer_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="@dimen/app_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_random" />
+        app:layout_constraintTop_toBottomOf="@id/searchTextInputLayout" />
 
     <ProgressBar
         android:id="@+id/progress"

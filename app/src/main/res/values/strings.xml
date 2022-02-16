@@ -8,4 +8,5 @@
     <string name="random_text_view_text">Random</string>
     <string name="image_pop_up_description">image_beer_dialog_fragment</string>
     <string name="button_ok">OK</string>
+    <string name="search_view_hint_text">Search...</string>
 </resources>
