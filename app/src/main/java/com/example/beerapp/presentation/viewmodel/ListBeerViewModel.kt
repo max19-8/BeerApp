@@ -24,10 +24,8 @@ class ListBeerViewModel(private val getListBeerUseCase: GetListBeerUseCase):View
             getListBeerUseCase.getBeersListByPage(it).cachedIn(viewModelScope)
         }
     }
-        fun setSearchBy(value: String) {
+        fun onQueryChange(value: String) {
             if (this.searchBy.value == value) return
             this.searchBy.value = value
         }
 }
-
-

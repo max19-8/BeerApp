@@ -49,10 +49,10 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
 
     private fun searchByName() {
         val searchEdit = binding.searchEditText
-        searchEdit.addTextChangedListener{
-            if (it != null){
+        searchEdit.addTextChangedListener {
+            if (it != null) {
                 searchEdit.clearFocus()
-                viewModel.setSearchBy(it.toString())
+                viewModel.onQueryChange(it.toString())
             }
         }
     }
