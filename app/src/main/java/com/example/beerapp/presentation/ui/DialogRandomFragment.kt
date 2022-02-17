@@ -38,17 +38,17 @@ class DialogRandomFragment : DialogFragment() {
             dismiss()
         }
     }
-
-    private fun getRandomBeer() = viewModel.getRandomBeer.observe(viewLifecycleOwner) {
-        binding.textViewNameBeerPopUp.text = it.name
-        binding.textViewAlcoholContentBeerPopUp.text =
-            context?.getString(R.string.alcohol_content_text, it.strengthDrinks.toString())
-        Glide.with(requireContext())
-            .load(it.imageUrl)
-            .fitCenter()
-            .error(R.drawable.placeholder)
-            .into(binding.imageBeerPopUp)
-    }
+    private fun getRandomBeer() =
+                viewModel.getRandomBeer.observe(viewLifecycleOwner) { beer ->
+                    binding.textViewNameBeerPopUp.text = beer.name
+                    binding.textViewAlcoholContentBeerPopUp.text =
+                        context?.getString(R.string.alcohol_content_text, beer.strengthDrinks.toString())
+                    Glide.with(requireContext())
+                        .load(beer.imageUrl)
+                        .fitCenter()
+                        .error(R.drawable.placeholder)
+                        .into(binding.imageBeerPopUp)
+                }
 
     override fun getTheme(): Int {
         return R.style.MyCustomTheme

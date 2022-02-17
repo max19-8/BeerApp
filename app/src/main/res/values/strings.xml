@@ -8,8 +8,9 @@
     <string name="random_text_view_text">Random</string>
     <string name="image_pop_up_description">image_beer_dialog_fragment</string>
     <string name="button_ok">OK</string>
-    <string name="search_view_hint_text">Search...</string>
+    <string name="search_view_hint_text">Search…</string>
     <string name="refresh_button_text">refresh</string>
     <string name="tap_to_retry_button_text">Tap to Retry</string>
     <string name="error_download_text">download error, check the internet and try again</string>
+    <string name="image_no_internet_connection_description">image_no_internet_connection</string>
 </resources>

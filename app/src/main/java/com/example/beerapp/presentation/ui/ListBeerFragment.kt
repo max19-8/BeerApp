@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.beerapp.R
 import com.example.beerapp.databinding.FragmentListBeerBinding
 import com.example.beerapp.presentation.adapter.BeerListAdapter
 import com.example.beerapp.presentation.adapter.BeersLoaderStateAdapter
@@ -68,6 +69,16 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
         beerAdapter?.addLoadStateListener { state: CombinedLoadStates ->
             val refreshState = state.refresh
             binding.progress.isVisible = refreshState == LoadState.Loading
+            if (refreshState is LoadState.Error){
+                hideUI()
+            }
+            binding.refreshButton.setOnClickListener {
+                lifecycleScope.launch {
+                    beerAdapter!!.retry()
+                    if (refreshState !is LoadState.Error)
+                        showUI()
+                }
+            }
         }
         binding.beerRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -77,4 +88,31 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
                 footer = BeersLoaderStateAdapter{beerAdapter!!.retry()})
         }
     }
-}
+
+    private fun hideUI(){
+        with(binding){
+            textViewTitle.isVisible = false
+            buttonRandom.isVisible = false
+            beerRecyclerView.isVisible = false
+            searchEditText.isVisible = false
+            refreshButton.isVisible = true
+            imageNoInternetConnection.isVisible = true
+            textViewError.apply {
+                isVisible = true
+                text = getString(R.string.error_download_text)
+            }
+        }
+    }
+
+    private fun showUI(){
+        with(binding){
+            textViewTitle.isVisible = true
+            buttonRandom.isVisible = true
+            beerRecyclerView.isVisible = true
+            searchEditText.isVisible = true
+            refreshButton.isVisible =false
+            imageNoInternetConnection.isVisible = false
+            textViewError.isVisible = false
+            }
+        }
+    }
