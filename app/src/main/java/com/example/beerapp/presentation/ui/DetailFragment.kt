@@ -46,7 +46,6 @@ class DetailFragment : BottomSheetDialogFragment() {
                     .error(R.drawable.ic_launcher_background)
                     .into(imageViewDetail)
             }
-
         }
     }
 }

@@ -3,6 +3,7 @@ package com.example.beerapp.presentation.ui
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
@@ -21,6 +22,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
     private val viewModel: ListBeerViewModel by viewModel()
     private var beerAdapter: BeerListAdapter? = null
+
 
     override fun getViewBinding(): FragmentListBeerBinding =
         FragmentListBeerBinding.inflate(layoutInflater)
@@ -42,8 +44,18 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
         }
         updateAdapter()
         loadData()
+        searchByName()
     }
-    
+
+    private fun searchByName() {
+        val searchEdit = binding.searchEditText
+        searchEdit.addTextChangedListener {
+            if (it != null) {
+                searchEdit.clearFocus()
+                viewModel.onQueryChange(it.toString())
+            }
+        }
+    }
 
 
     private fun loadData() {

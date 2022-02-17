@@ -5,5 +5,5 @@ import com.example.beerapp.data.model.BeerRemoteModelItem
 import kotlinx.coroutines.flow.Flow
 
 interface ListBeerRepository {
-    fun getBeersListByPage(): Flow<PagingData<BeerRemoteModelItem>>
+    fun getBeersListByPage(query:String): Flow<PagingData<BeerRemoteModelItem>>
 }

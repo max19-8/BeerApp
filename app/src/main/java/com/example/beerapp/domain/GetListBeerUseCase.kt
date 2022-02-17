@@ -8,6 +8,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class GetListBeerUseCase(private val listBeerRepositoryImpl: ListBeerRepositoryImpl) {
-    fun getBeersListByPage() : Flow<PagingData<BeerPresentationModelItem>> =
-        listBeerRepositoryImpl.getBeersListByPage().map { it.toPresentationBeer() }
+    fun getBeersListByPage(query:String) : Flow<PagingData<BeerPresentationModelItem>> =
+        listBeerRepositoryImpl.getBeersListByPage(query).map { it.toPresentationBeer() }
 }

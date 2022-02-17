@@ -8,7 +8,7 @@ import com.example.beerapp.data.model.BeerRemoteModelItem
 
 private const val STARTING_PAGE_INDEX = 1
 
-class BeerPagingSource(private val apiService: ApiService) :
+class BeerPagingSource(private val apiService: ApiService, private val query: String) :
     PagingSource<Int, BeerRemoteModelItem>() {
 
     override fun getRefreshKey(state: PagingState<Int, BeerRemoteModelItem>): Int? {
@@ -21,7 +21,7 @@ class BeerPagingSource(private val apiService: ApiService) :
         val page = params.key ?: STARTING_PAGE_INDEX
         val pageSize = params.loadSize
         return try {
-            val response = apiService.getBeersListByPage(page, pageSize)
+            val response = loadData(page, pageSize, query)
             Log.d("BeerPagingSource", "$response")
             val nextKey = if (response.size < pageSize) null else page + 1
             val prevKey = if (page == STARTING_PAGE_INDEX) null else page - 1
@@ -35,4 +35,10 @@ class BeerPagingSource(private val apiService: ApiService) :
             LoadResult.Error(exception)
         }
     }
+
+    private suspend fun loadData(page: Int, pageSize: Int, query: String) =
+        if (query.isEmpty())
+            apiService.getBeersListByPage(page, pageSize)
+        else
+            apiService.getBeerByName(pageSize, query)
 }
