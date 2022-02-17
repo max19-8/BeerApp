@@ -7,7 +7,6 @@ import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.beerapp.databinding.ItemErrorBinding
-import com.example.beerapp.databinding.ItemProgressBinding
 
 class BeersLoaderStateAdapter : LoadStateAdapter<BeersLoaderStateAdapter.ItemViewHolder>() {
 
@@ -41,7 +40,7 @@ class BeersLoaderStateAdapter : LoadStateAdapter<BeersLoaderStateAdapter.ItemVie
     }
 
     class ProgressViewHolder constructor(
-        binding: ItemProgressBinding
+        binding: ItemErrorBinding
     ) : ItemViewHolder(binding.root) {
 
         override fun bind(loadState: LoadState) {
@@ -56,7 +55,7 @@ class BeersLoaderStateAdapter : LoadStateAdapter<BeersLoaderStateAdapter.ItemVie
                 attachToRoot: Boolean = false
             ): ProgressViewHolder {
                 return ProgressViewHolder(
-                    ItemProgressBinding.inflate(
+                    ItemErrorBinding.inflate(
                         layoutInflater,
                         parent,
                         attachToRoot
