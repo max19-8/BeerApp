@@ -9,12 +9,14 @@ import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.beerapp.R
+import com.example.beerapp.data.app.ConnectivityStatus
 import com.example.beerapp.databinding.FragmentListBeerBinding
 import com.example.beerapp.presentation.adapter.BeerListAdapter
 import com.example.beerapp.presentation.adapter.BeersLoaderStateAdapter
 import com.example.beerapp.presentation.adapter.OnBeerClickListener
 import com.example.beerapp.presentation.model.BeerPresentationModelItem
 import com.example.beerapp.presentation.viewmodel.ListBeerViewModel
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -22,13 +24,19 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
     private val viewModel: ListBeerViewModel by viewModel()
     private var beerAdapter: BeerListAdapter? = null
-
-
+    private var connect: ConnectivityStatus? = null
     override fun getViewBinding(): FragmentListBeerBinding =
         FragmentListBeerBinding.inflate(layoutInflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        createAdapter()
+        updateAdapter()
+        loadData()
+        searchByName()
+    }
+
+    private fun createAdapter() {
         beerAdapter = BeerListAdapter(object : OnBeerClickListener {
             override fun onBeerClick(
                 beer: BeerPresentationModelItem
@@ -39,12 +47,22 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
                 navigate(action)
             }
         })
-        binding.buttonRandom.setOnClickListener {
-            navigate(ListBeerFragmentDirections.actionListBeerFragmentToDialogRandomFragment())
+        clickRandom()
+    }
+
+    private fun clickRandom() = binding.buttonRandom.setOnClickListener {
+        connect = ConnectivityStatus(requireContext())
+        connect?.observe(viewLifecycleOwner) {
+            when (it) {
+                true -> navigate(ListBeerFragmentDirections.actionListBeerFragmentToDialogRandomFragment())
+                false -> Snackbar.make(
+                    binding.root,
+                    getString(R.string.check_internet_text),
+                    Snackbar.LENGTH_LONG
+                ).show()
+            }
+            connect?.removeObservers(viewLifecycleOwner)
         }
-        updateAdapter()
-        loadData()
-        searchByName()
     }
 
     private fun searchByName() {
@@ -57,19 +75,18 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
         }
     }
 
-    private fun loadData() {
+    private fun loadData() =
         lifecycleScope.launch {
             viewModel.getBeers.collectLatest {
                 beerAdapter?.submitData(it)
             }
         }
-    }
 
     private fun updateAdapter() {
         beerAdapter?.addLoadStateListener { state: CombinedLoadStates ->
             val refreshState = state.refresh
             binding.progress.isVisible = refreshState == LoadState.Loading
-            if (refreshState is LoadState.Error){
+            if (refreshState is LoadState.Error) {
                 hideUI()
             }
             binding.refreshButton.setOnClickListener {
@@ -84,13 +101,13 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
             layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
             adapter = beerAdapter?.withLoadStateHeaderAndFooter(
-                header = BeersLoaderStateAdapter{beerAdapter!!.retry()},
-                footer = BeersLoaderStateAdapter{beerAdapter!!.retry()})
+                header = BeersLoaderStateAdapter { beerAdapter!!.retry() },
+                footer = BeersLoaderStateAdapter { beerAdapter!!.retry() })
         }
     }
 
-    private fun hideUI(){
-        with(binding){
+    private fun hideUI() =
+        with(binding) {
             textViewTitle.isVisible = false
             buttonRandom.isVisible = false
             beerRecyclerView.isVisible = false
@@ -102,17 +119,15 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
                 text = getString(R.string.error_download_text)
             }
         }
-    }
 
-    private fun showUI(){
-        with(binding){
+    private fun showUI() =
+        with(binding) {
             textViewTitle.isVisible = true
             buttonRandom.isVisible = true
             beerRecyclerView.isVisible = true
             searchEditText.isVisible = true
-            refreshButton.isVisible =false
+            refreshButton.isVisible = false
             imageNoInternetConnection.isVisible = false
             textViewError.isVisible = false
-            }
         }
-    }
+}

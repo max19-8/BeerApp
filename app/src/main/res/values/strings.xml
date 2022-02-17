@@ -13,4 +13,5 @@
     <string name="tap_to_retry_button_text">Tap to Retry</string>
     <string name="error_download_text">download error, check the internet and try again</string>
     <string name="image_no_internet_connection_description">image_no_internet_connection</string>
+    <string name="check_internet_text">check your internet connection</string>
 </resources>

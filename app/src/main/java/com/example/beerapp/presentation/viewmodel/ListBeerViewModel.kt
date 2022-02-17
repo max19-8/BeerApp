@@ -15,6 +15,8 @@ import kotlinx.coroutines.flow.flatMapLatest
 
 class ListBeerViewModel(private val getListBeerUseCase: GetListBeerUseCase):ViewModel() {
 
+
+
     private var beers: Flow<PagingData<BeerPresentationModelItem>> = emptyFlow()
     val getBeers: Flow<PagingData<BeerPresentationModelItem>>
         get() = beers
