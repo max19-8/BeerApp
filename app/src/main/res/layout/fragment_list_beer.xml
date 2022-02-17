@@ -21,7 +21,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_random"
         android:layout_width="wrap_content"
@@ -34,7 +33,6 @@
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/searchTextInputLayout"
@@ -92,7 +90,6 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/refresh_button"
         android:layout_width="wrap_content"
@@ -103,7 +100,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
-
 
     <TextView
         android:id="@+id/text_view_error"
@@ -119,7 +115,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/refresh_button" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
-

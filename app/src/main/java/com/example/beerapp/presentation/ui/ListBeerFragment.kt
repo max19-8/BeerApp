@@ -74,8 +74,7 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
             setHasFixedSize(true)
             adapter = beerAdapter?.withLoadStateHeaderAndFooter(
                 header = BeersLoaderStateAdapter{beerAdapter!!.retry()},
-                footer = BeersLoaderStateAdapter{beerAdapter!!.retry()}
-            )
+                footer = BeersLoaderStateAdapter{beerAdapter!!.retry()})
         }
     }
 }
