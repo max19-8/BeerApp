@@ -14,7 +14,6 @@ import com.example.beerapp.presentation.adapter.BeersLoaderStateAdapter
 import com.example.beerapp.presentation.adapter.OnBeerClickListener
 import com.example.beerapp.presentation.model.BeerPresentationModelItem
 import com.example.beerapp.presentation.viewmodel.ListBeerViewModel
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -57,7 +56,6 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
         }
     }
 
-
     private fun loadData() {
         lifecycleScope.launch {
             viewModel.getBeers.collectLatest {
@@ -69,21 +67,14 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
     private fun updateAdapter() {
         beerAdapter?.addLoadStateListener { state: CombinedLoadStates ->
             val refreshState = state.refresh
-            binding.beerRecyclerView.isVisible = refreshState != LoadState.Loading
             binding.progress.isVisible = refreshState == LoadState.Loading
-            if (refreshState is LoadState.Error) {
-                Snackbar.make(
-                    binding.root, refreshState.error.localizedMessage ?: "",
-                    Snackbar.LENGTH_LONG
-                ).show()
-            }
         }
         binding.beerRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             setHasFixedSize(true)
             adapter = beerAdapter?.withLoadStateHeaderAndFooter(
-                header = BeersLoaderStateAdapter(),
-                footer = BeersLoaderStateAdapter()
+                header = BeersLoaderStateAdapter{beerAdapter!!.retry()},
+                footer = BeersLoaderStateAdapter{beerAdapter!!.retry()}
             )
         }
     }
