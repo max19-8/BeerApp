@@ -36,7 +36,7 @@ fun PagingData<BeerRemoteModelItem>.toPresentationBeer() = map {
         description = it.description,
         imageUrl = it.imageUrl,
         strengthDrinks = it.strengthDrinks,
-        hydrogenIndex = it.hydrogenIndex
+        hydrogenIndex = it.hydrogenIndex,
     )
 }
 
@@ -49,5 +49,5 @@ fun BeerRemoteModelItem.toPresentationBeer() =
         description = this.description,
         imageUrl = this.imageUrl,
         strengthDrinks = this.strengthDrinks,
-        hydrogenIndex = this.hydrogenIndex
+        hydrogenIndex = this.hydrogenIndex,
     )

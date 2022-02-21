@@ -2,6 +2,7 @@ package com.example.beerapp.presentation.ui
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ToggleButton
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
@@ -11,9 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.beerapp.R
 import com.example.beerapp.data.app.ConnectivityStatus
 import com.example.beerapp.databinding.FragmentListBeerBinding
-import com.example.beerapp.presentation.adapter.BeerListAdapter
-import com.example.beerapp.presentation.adapter.BeersLoaderStateAdapter
-import com.example.beerapp.presentation.adapter.OnBeerClickListener
+import com.example.beerapp.presentation.adapter.*
 import com.example.beerapp.presentation.model.BeerPresentationModelItem
 import com.example.beerapp.presentation.viewmodel.ListBeerViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -25,6 +24,7 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
     private val viewModel: ListBeerViewModel by viewModel()
     private var beerAdapter: BeerListAdapter? = null
     private var connect: ConnectivityStatus? = null
+  
     override fun getViewBinding(): FragmentListBeerBinding =
         FragmentListBeerBinding.inflate(layoutInflater)
 
@@ -46,6 +46,20 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
                 )
                 navigate(action)
             }
+        },
+            object : IsFavoriteClickListener{
+                override fun changeIsFavorite(beerPresentationModelItem: BeerPresentationModelItem,isFavorite:Boolean) {
+                    viewModel.addDeleteFavorite(beerPresentationModelItem,isFavorite)
+                }
+            }, object : CheckIsFavoriteListener {
+                override fun checkIsFavorite(beerPresentationModelItem: BeerPresentationModelItem, btn: ToggleButton) {
+                    lifecycleScope.launch {
+                        btn.isChecked = viewModel.checkFavorite(beerPresentationModelItem.id!!)
+                    }
+                }
+            })
+        binding.buttonRandom.setOnClickListener {
+            navigate(ListBeerFragmentDirections.actionListBeerFragmentToDialogRandomFragment())
         })
         clickRandom()
     }
@@ -65,7 +79,6 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
             connect?.removeObservers(viewLifecycleOwner)
         }
     }
-
     private fun searchByName() {
         val searchEdit = binding.searchEditText
         searchEdit.addTextChangedListener {
@@ -75,14 +88,12 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
             }
         }
     }
-
     private fun loadData() =
         lifecycleScope.launch {
             viewModel.getBeers.collectLatest {
                 beerAdapter?.submitData(it)
             }
         }
-
     private fun updateAdapter() {
         beerAdapter?.addLoadStateListener { state: CombinedLoadStates ->
             val refreshState = state.refresh
@@ -106,7 +117,6 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
                 footer = BeersLoaderStateAdapter { beerAdapter!!.retry() })
         }
     }
-
     private fun hideContent() =
         with(binding) {
             textViewTitle.isVisible = false
@@ -120,7 +130,6 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
                 text = getString(R.string.error_download_text)
             }
         }
-
     private fun showContent() =
         with(binding) {
             textViewTitle.isVisible = true

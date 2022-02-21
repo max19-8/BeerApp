@@ -21,7 +21,6 @@ class DetailFragment : BottomSheetDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentDetailBinding.bind(inflater.inflate(R.layout.fragment_detail, container))
         return binding.root
     }

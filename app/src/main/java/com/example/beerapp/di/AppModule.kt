@@ -1,6 +1,11 @@
 package com.example.beerapp.di
 
+
+import android.app.Application
+import androidx.room.Room
 import com.example.beerapp.data.api.ApiService
+import com.example.beerapp.database.FavoriteBeerDao
+import com.example.beerapp.database.FavoriteBeerDatabase
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -11,6 +16,8 @@ val appModule = module {
     single { provideOkHttpClient() }
     single { provideRetrofit(okHttpClient = get()) }
     single { provideApiService(retrofit = get()) }
+    single { provideDataBase(get()) }
+    single { provideDao(dataBase = get()) }
 }
 
 private fun provideOkHttpClient(): OkHttpClient {
@@ -32,3 +39,12 @@ private fun provideRetrofit(
 
 private fun provideApiService(retrofit: Retrofit): ApiService =
     retrofit.create(ApiService::class.java)
+
+    fun provideDataBase(application: Application): FavoriteBeerDatabase {
+        return Room.databaseBuilder(application, FavoriteBeerDatabase::class.java, "BEERS_DB")
+            .build()
+    }
+
+    fun provideDao(dataBase: FavoriteBeerDatabase): FavoriteBeerDao {
+        return dataBase.favoriteBeersDao()
+    }
