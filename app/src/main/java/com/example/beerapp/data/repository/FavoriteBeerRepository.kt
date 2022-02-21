@@ -6,5 +6,4 @@ interface FavoriteBeerRepository {
     suspend fun addToFavorite(beerPresentationModelItem: BeerPresentationModelItem)
     suspend fun removeFromFavorite(beerPresentationModelItem: BeerPresentationModelItem)
     suspend fun isFavorite(id: Int): Boolean
-
 }
