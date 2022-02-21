@@ -7,7 +7,6 @@ import androidx.core.view.isVisible
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.beerapp.R
 import com.example.beerapp.databinding.ItemErrorBinding
 
 class BeersLoaderStateAdapter(
@@ -20,8 +19,7 @@ class BeersLoaderStateAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(loadState: LoadState) {
             if (loadState is LoadState.Error) {
-                binding.textViewError.text =
-                    itemView.context.getString(R.string.error_download_text)
+                binding.textViewError.text = loadState.error.localizedMessage
             }
             binding.progressbar.isVisible = (loadState is LoadState.Loading)
             binding.buttonRetry.isVisible = (loadState is LoadState.Error)
