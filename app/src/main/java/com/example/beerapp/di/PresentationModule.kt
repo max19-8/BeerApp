@@ -7,7 +7,7 @@ import org.koin.dsl.module
 
 val presentationModule = module {
     viewModel {
-        ListBeerViewModel(getListBeerUseCase = get())
+        ListBeerViewModel(getListBeerUseCase = get(),favoriteBeerUseCase = get())
     }
     viewModel {
         RandomBeerViewModel(getRandomBeerUseCase = get())

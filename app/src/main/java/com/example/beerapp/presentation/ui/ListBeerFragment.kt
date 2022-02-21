@@ -2,6 +2,7 @@ package com.example.beerapp.presentation.ui
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ToggleButton
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
@@ -9,9 +10,7 @@ import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.beerapp.databinding.FragmentListBeerBinding
-import com.example.beerapp.presentation.adapter.BeerListAdapter
-import com.example.beerapp.presentation.adapter.BeersLoaderStateAdapter
-import com.example.beerapp.presentation.adapter.OnBeerClickListener
+import com.example.beerapp.presentation.adapter.*
 import com.example.beerapp.presentation.model.BeerPresentationModelItem
 import com.example.beerapp.presentation.viewmodel.ListBeerViewModel
 import kotlinx.coroutines.flow.collectLatest
@@ -21,8 +20,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
     private val viewModel: ListBeerViewModel by viewModel()
     private var beerAdapter: BeerListAdapter? = null
-
-
     override fun getViewBinding(): FragmentListBeerBinding =
         FragmentListBeerBinding.inflate(layoutInflater)
 
@@ -37,7 +34,16 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
                 )
                 navigate(action)
             }
-        })
+        },
+            object : IsFavoriteClickListener{
+                override fun addDeleteFavorite(beerPresentationModelItem: BeerPresentationModelItem,isFavorite:Boolean) {
+                    viewModel.addDeleteFavorite(beerPresentationModelItem,isFavorite)
+                }
+            }, object : CheckIsFavoriteListener {
+                override fun checkIsFavorite(beerPresentationModelItem: BeerPresentationModelItem, btn: ToggleButton) {
+                    viewModel.checkFavorite(beerPresentationModelItem.id!!,btn)
+                }
+            })
         binding.buttonRandom.setOnClickListener {
             navigate(ListBeerFragmentDirections.actionListBeerFragmentToDialogRandomFragment())
         }
