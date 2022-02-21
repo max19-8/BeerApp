@@ -33,11 +33,10 @@ class ListBeerViewModel(private val getListBeerUseCase: GetListBeerUseCase,
         this.searchBy.value = value
     }
 
-    fun checkFavorite(id:Int, btn: ToggleButton) {
-        viewModelScope.launch {
-            btn.isChecked = favoriteBeerUseCase.isFavorite(id)
-        }
-    }
+  suspend  fun checkFavorite(id:Int) =
+           favoriteBeerUseCase.isFavorite(id)
+
+
 
     fun addDeleteFavorite(beerPresentationModelItem: BeerPresentationModelItem,isFavorite:Boolean) =
         viewModelScope.launch {

@@ -36,12 +36,14 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
             }
         },
             object : IsFavoriteClickListener{
-                override fun addDeleteFavorite(beerPresentationModelItem: BeerPresentationModelItem,isFavorite:Boolean) {
+                override fun changeIsFavorite(beerPresentationModelItem: BeerPresentationModelItem,isFavorite:Boolean) {
                     viewModel.addDeleteFavorite(beerPresentationModelItem,isFavorite)
                 }
             }, object : CheckIsFavoriteListener {
                 override fun checkIsFavorite(beerPresentationModelItem: BeerPresentationModelItem, btn: ToggleButton) {
-                    viewModel.checkFavorite(beerPresentationModelItem.id!!,btn)
+                    lifecycleScope.launch {
+                        btn.isChecked = viewModel.checkFavorite(beerPresentationModelItem.id!!)
+                    }
                 }
             })
         binding.buttonRandom.setOnClickListener {

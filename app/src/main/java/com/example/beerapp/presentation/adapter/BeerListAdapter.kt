@@ -52,7 +52,7 @@ class BeerListAdapter(private val onBeerClickListener: OnBeerClickListener,
 
         fun isFavorite(isFavoriteClickListener: IsFavoriteClickListener,beer:BeerPresentationModelItem){
             binding.likeButton.setOnCheckedChangeListener {_, isChecked ->
-                isFavoriteClickListener.addDeleteFavorite(beer,!(isChecked))
+                isFavoriteClickListener.changeIsFavorite(beer,!isChecked)
             }
         }
     }
