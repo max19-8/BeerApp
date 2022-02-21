@@ -12,18 +12,23 @@ import com.example.beerapp.domain.GetListBeerUseCase
 import com.example.beerapp.presentation.model.BeerPresentationModelItem
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
 
 class ListBeerViewModel(private val getListBeerUseCase: GetListBeerUseCase,
                         private val favoriteBeerUseCase: FavoriteBeerUseCase):ViewModel() {
 
-    private  var beers: Flow<PagingData<BeerPresentationModelItem>>
+    private var beers: Flow<PagingData<BeerPresentationModelItem>> = emptyFlow()
     val getBeers: Flow<PagingData<BeerPresentationModelItem>>
         get() = beers
     private val searchBy = MutableLiveData("")
 
     init {
+        getBeers()
+    }
+
+    private fun getBeers() {
         beers = searchBy.asFlow().debounce(800).flatMapLatest {
             getListBeerUseCase.getBeersListByPage(it).cachedIn(viewModelScope)
         }
@@ -42,4 +47,4 @@ class ListBeerViewModel(private val getListBeerUseCase: GetListBeerUseCase,
         viewModelScope.launch {
             favoriteBeerUseCase.addDeleteFavorite(beerPresentationModelItem,isFavorite)
         }
-}
+    }
