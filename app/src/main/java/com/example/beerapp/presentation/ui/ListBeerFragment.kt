@@ -53,9 +53,10 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
     private fun clickRandom() = binding.buttonRandom.setOnClickListener {
         connect = ConnectivityStatus(requireContext())
         connect?.observe(viewLifecycleOwner) {
-            when (it) {
-                true -> navigate(ListBeerFragmentDirections.actionListBeerFragmentToDialogRandomFragment())
-                false -> Snackbar.make(
+            if (it) {
+                navigate(ListBeerFragmentDirections.actionListBeerFragmentToDialogRandomFragment())
+            }else{
+                Snackbar.make(
                     binding.root,
                     getString(R.string.check_internet_text),
                     Snackbar.LENGTH_LONG
@@ -87,13 +88,13 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
             val refreshState = state.refresh
             binding.progress.isVisible = refreshState == LoadState.Loading
             if (refreshState is LoadState.Error) {
-                hideUI()
+                hideContent()
             }
             binding.refreshButton.setOnClickListener {
                 lifecycleScope.launch {
                     beerAdapter!!.retry()
                     if (refreshState !is LoadState.Error)
-                        showUI()
+                        showContent()
                 }
             }
         }
@@ -106,7 +107,7 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
         }
     }
 
-    private fun hideUI() =
+    private fun hideContent() =
         with(binding) {
             textViewTitle.isVisible = false
             buttonRandom.isVisible = false
@@ -120,7 +121,7 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
             }
         }
 
-    private fun showUI() =
+    private fun showContent() =
         with(binding) {
             textViewTitle.isVisible = true
             buttonRandom.isVisible = true
