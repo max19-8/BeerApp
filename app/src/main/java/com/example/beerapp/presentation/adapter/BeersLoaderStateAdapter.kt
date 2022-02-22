@@ -1,7 +1,6 @@
 package com.example.beerapp.presentation.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.paging.LoadState
@@ -27,8 +26,6 @@ class BeersLoaderStateAdapter(
             binding.buttonRetry.setOnClickListener {
                 retry()
             }
-
-            binding.progressbar.visibility = View.VISIBLE
         }
     }
 
