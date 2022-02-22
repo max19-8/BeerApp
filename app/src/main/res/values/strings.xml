@@ -14,4 +14,5 @@
     <string name="error_download_text">download error, check the internet and try again</string>
     <string name="image_no_internet_connection_description">image_no_internet_connection</string>
     <string name="check_internet_text">check your internet connection</string>
+    <string name="is_favorite_image_description">isFavoriteImageDesignation</string>
 </resources>

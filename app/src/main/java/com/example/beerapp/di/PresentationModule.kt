@@ -1,5 +1,6 @@
 package com.example.beerapp.di
 
+import com.example.beerapp.presentation.viewmodel.DetailBeerViewModel
 import com.example.beerapp.presentation.viewmodel.ListBeerViewModel
 import com.example.beerapp.presentation.viewmodel.RandomBeerViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -11,5 +12,8 @@ val presentationModule = module {
     }
     viewModel {
         RandomBeerViewModel(getRandomBeerUseCase = get())
+    }
+    viewModel {
+        DetailBeerViewModel(favoriteBeerUseCase = get())
     }
 }
