@@ -18,6 +18,7 @@
             android:layout_width="@dimen/image_view_size"
             android:layout_height="@dimen/image_view_size"
             android:contentDescription="@string/image_beer_description"
+            android:layout_marginVertical="@dimen/small_margin"
             android:scaleType="centerInside"
             android:adjustViewBounds="true"
             tools:src="@mipmap/ic_launcher"
