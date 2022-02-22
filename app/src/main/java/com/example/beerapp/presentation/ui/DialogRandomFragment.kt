@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import com.bumptech.glide.Glide
 import com.example.beerapp.R
@@ -33,13 +34,17 @@ class DialogRandomFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog?.setCanceledOnTouchOutside(true)
         getRandomBeer()
         binding.buttonExit.setOnClickListener {
             dismiss()
         }
     }
 
-    private fun getRandomBeer() =
+    private fun getRandomBeer() {
+        viewModel.getVisibilityProgress.observe(viewLifecycleOwner) {
+            binding.loadingProgressBar.isVisible = it
+        }
         viewModel.getRandomBeer.observe(viewLifecycleOwner) { beer ->
             binding.textViewNameBeerPopUp.text = beer.name
             binding.textViewAlcoholContentBeerPopUp.text =
@@ -50,11 +55,7 @@ class DialogRandomFragment : DialogFragment() {
                 .error(R.drawable.placeholder)
                 .into(binding.imageBeerPopUp)
         }
-
-    override fun getTheme(): Int {
-        return R.style.MyCustomTheme
     }
-
     override fun onDestroy() {
         super.onDestroy()
         _binding = null

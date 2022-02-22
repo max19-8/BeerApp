@@ -13,14 +13,20 @@ class RandomBeerViewModel(private val getRandomBeerUseCase: GetRandomBeerUseCase
     private val randomBeer = MutableLiveData<BeerPresentationModelItem>()
     val getRandomBeer: LiveData<BeerPresentationModelItem>
         get() = randomBeer
+    private val visibilityProgress = MutableLiveData<Boolean>()
+    val getVisibilityProgress: LiveData<Boolean>
+        get() = visibilityProgress
+
 
     init {
         getRandomBeer()
     }
 
     private fun getRandomBeer() {
+        visibilityProgress.value = true
         viewModelScope.launch(Dispatchers.IO) {
             randomBeer.postValue(getRandomBeerUseCase.getRandomBeer())
+            visibilityProgress.postValue(false)
         }
     }
 }

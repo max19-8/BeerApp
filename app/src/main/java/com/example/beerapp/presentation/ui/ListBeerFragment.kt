@@ -59,12 +59,14 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
                 }
             })
         binding.buttonRandom.setOnClickListener {
+            binding.progress.isVisible = true
             navigate(ListBeerFragmentDirections.actionListBeerFragmentToDialogRandomFragment())
         }
         clickRandom()
     }
 
     private fun clickRandom() = binding.buttonRandom.setOnClickListener {
+
         connect = ConnectivityStatus(requireContext())
         connect?.observe(viewLifecycleOwner) {
             if (it) {
@@ -77,6 +79,7 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
                 ).show()
             }
             connect?.removeObservers(viewLifecycleOwner)
+            binding.progress.isVisible = false
         }
     }
     private fun searchByName() {
