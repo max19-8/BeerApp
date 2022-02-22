@@ -9,9 +9,7 @@ import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.beerapp.databinding.FragmentListBeerBinding
-import com.example.beerapp.presentation.adapter.BeerListAdapter
-import com.example.beerapp.presentation.adapter.BeersLoaderStateAdapter
-import com.example.beerapp.presentation.adapter.OnBeerClickListener
+import com.example.beerapp.presentation.adapter.*
 import com.example.beerapp.presentation.model.BeerPresentationModelItem
 import com.example.beerapp.presentation.viewmodel.ListBeerViewModel
 import kotlinx.coroutines.flow.collectLatest
@@ -21,13 +19,21 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
     private val viewModel: ListBeerViewModel by viewModel()
     private var beerAdapter: BeerListAdapter? = null
-
-
     override fun getViewBinding(): FragmentListBeerBinding =
         FragmentListBeerBinding.inflate(layoutInflater)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+
+        createAdapter()
+        updateAdapter()
+        loadData()
+        searchByName()
+    }
+
+    private fun createAdapter() {
         beerAdapter = BeerListAdapter(object : OnBeerClickListener {
             override fun onBeerClick(
                 beer: BeerPresentationModelItem
@@ -41,9 +47,6 @@ class ListBeerFragment : BaseFragment<FragmentListBeerBinding>() {
         binding.buttonRandom.setOnClickListener {
             navigate(ListBeerFragmentDirections.actionListBeerFragmentToDialogRandomFragment())
         }
-        updateAdapter()
-        loadData()
-        searchByName()
     }
 
     private fun searchByName() {

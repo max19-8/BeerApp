@@ -12,4 +12,7 @@ val domainModule = module {
     factory {
         GetRandomBeerUseCase(randomBeerRepositoryImpl = get())
     }
+    single {
+        FavoriteBeerUseCase(favoriteBeerRepositoryImpl = get())
+    }
 }

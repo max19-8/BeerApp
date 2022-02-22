@@ -12,4 +12,7 @@ val dataModule = module {
     single {
         RandomBeerRepositoryImpl(apiService = get())
     }
+    single {
+        FavoriteBeerRepositoryImpl(dao = get())
+    }
 }

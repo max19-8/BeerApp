@@ -10,8 +10,9 @@ import com.example.beerapp.R
 import com.example.beerapp.databinding.BeerItemBinding
 import com.example.beerapp.presentation.model.BeerPresentationModelItem
 
-class BeerListAdapter(private val onBeerClickListener: OnBeerClickListener) :
+class BeerListAdapter(private val onBeerClickListener: OnBeerClickListener):
     PagingDataAdapter<BeerPresentationModelItem, BeerListAdapter.BeerViewHolder>(Diff()) {
+
     override fun onBindViewHolder(holder: BeerViewHolder, position: Int) {
         val currentItem = getItem(position)
         if (currentItem != null) {
@@ -28,8 +29,7 @@ class BeerListAdapter(private val onBeerClickListener: OnBeerClickListener) :
         val binding = BeerItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return BeerViewHolder(binding)
     }
-
-    class BeerViewHolder(private val binding: BeerItemBinding) :
+   inner class BeerViewHolder(private val binding: BeerItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun binds(beer: BeerPresentationModelItem) {
             binding.apply {
@@ -53,11 +53,10 @@ class BeerListAdapter(private val onBeerClickListener: OnBeerClickListener) :
             newItem: BeerPresentationModelItem
         ): Boolean =
             oldItem.id == newItem.id
-
         override fun areContentsTheSame(
             oldItem: BeerPresentationModelItem,
             newItem: BeerPresentationModelItem
         ): Boolean =
-            oldItem == newItem
+            oldItem.id == newItem.id
     }
 }

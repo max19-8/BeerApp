@@ -1,9 +1,6 @@
 package com.example.beerapp.presentation.viewmodel
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asFlow
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.beerapp.domain.GetListBeerUseCase
@@ -18,6 +15,9 @@ class ListBeerViewModel(private val getListBeerUseCase: GetListBeerUseCase):View
     val getBeers: Flow<PagingData<BeerPresentationModelItem>>
         get() = beers
     private val searchBy = MutableLiveData("")
+
+    var check : Boolean = false
+
 
     init {
         beers = searchBy.asFlow().debounce(800).flatMapLatest {

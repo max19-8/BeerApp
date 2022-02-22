@@ -40,5 +40,6 @@
             tools:text="Содержание алкоголя"
             style="@style/text_view_beer_item_style"/>
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
