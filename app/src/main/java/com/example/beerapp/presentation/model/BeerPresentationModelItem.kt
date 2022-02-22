@@ -17,4 +17,5 @@ data class BeerPresentationModelItem(
     val imageUrl: String?,
     val strengthDrinks: Double?,
     val hydrogenIndex: Double?,
+    var isFavorite:Boolean = false
 ):Parcelable

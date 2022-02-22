@@ -40,6 +40,19 @@
             tools:text="Содержание алкоголя"
             style="@style/text_view_beer_item_style"/>
 
+        <ToggleButton
+            android:id="@+id/like_button"
+            android:layout_width="36dp"
+            android:textOff=""
+            android:textOn=""
+            android:layout_height="36dp"
+            android:layout_margin="@dimen/app_margin"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:background="@drawable/favorite_selector"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

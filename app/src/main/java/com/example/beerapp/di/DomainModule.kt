@@ -1,6 +1,6 @@
 package com.example.beerapp.di
 
-
+import com.example.beerapp.domain.FavoriteBeerUseCase
 import com.example.beerapp.domain.GetListBeerUseCase
 import com.example.beerapp.domain.GetRandomBeerUseCase
 import org.koin.dsl.module

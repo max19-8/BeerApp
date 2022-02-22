@@ -10,13 +10,16 @@ import com.example.beerapp.R
 import com.example.beerapp.databinding.BeerItemBinding
 import com.example.beerapp.presentation.model.BeerPresentationModelItem
 
-class BeerListAdapter(private val onBeerClickListener: OnBeerClickListener):
+class BeerListAdapter(private val onBeerClickListener: OnBeerClickListener,
+                      private val isFavoriteClickListener: IsFavoriteClickListener,
+                      private val checkIsFavoriteListener: CheckIsFavoriteListener) :
     PagingDataAdapter<BeerPresentationModelItem, BeerListAdapter.BeerViewHolder>(Diff()) {
 
     override fun onBindViewHolder(holder: BeerViewHolder, position: Int) {
         val currentItem = getItem(position)
         if (currentItem != null) {
             holder.binds(currentItem)
+            holder.isFavorite(isFavoriteClickListener,currentItem)
             holder.itemView.setOnClickListener {
                 onBeerClickListener.onBeerClick(
                     currentItem
@@ -29,7 +32,7 @@ class BeerListAdapter(private val onBeerClickListener: OnBeerClickListener):
         val binding = BeerItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return BeerViewHolder(binding)
     }
-   inner class BeerViewHolder(private val binding: BeerItemBinding) :
+    inner class BeerViewHolder(private val binding: BeerItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun binds(beer: BeerPresentationModelItem) {
             binding.apply {
@@ -43,6 +46,13 @@ class BeerListAdapter(private val onBeerClickListener: OnBeerClickListener):
                     R.string.alcohol_content_text,
                     beer.strengthDrinks.toString()
                 )
+            }
+            checkIsFavoriteListener.checkIsFavorite(beer,binding.likeButton)
+        }
+
+        fun isFavorite(isFavoriteClickListener: IsFavoriteClickListener,beer:BeerPresentationModelItem){
+            binding.likeButton.setOnCheckedChangeListener {_, isChecked ->
+                isFavoriteClickListener.changeIsFavorite(beer,!isChecked)
             }
         }
     }
