@@ -19,8 +19,7 @@ class ListBeerViewModel(private val getListBeerUseCase: GetListBeerUseCase,
     val getBeers: Flow<PagingData<BeerPresentationModelItem>>
         get() = beers
     private val searchBy = MutableLiveData("")
-
-
+    
     init {
         getBeers()
     }
