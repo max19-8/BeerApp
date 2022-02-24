@@ -23,9 +23,6 @@ class ListBeerViewModel(private val getListBeerUseCase: GetListBeerUseCase,
         get() = beers
     private val searchBy = MutableLiveData("")
 
-    var check : Boolean = false
-
-
     init {
         getBeers()
     }
