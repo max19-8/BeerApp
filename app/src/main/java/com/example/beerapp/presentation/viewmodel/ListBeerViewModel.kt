@@ -1,10 +1,6 @@
 package com.example.beerapp.presentation.viewmodel
 
-import android.widget.ToggleButton
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asFlow
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.beerapp.domain.FavoriteBeerUseCase
@@ -24,6 +20,7 @@ class ListBeerViewModel(private val getListBeerUseCase: GetListBeerUseCase,
         get() = beers
     private val searchBy = MutableLiveData("")
 
+
     init {
         getBeers()
     }
@@ -40,8 +37,6 @@ class ListBeerViewModel(private val getListBeerUseCase: GetListBeerUseCase,
 
   suspend  fun checkFavorite(id:Int) =
            favoriteBeerUseCase.isFavorite(id)
-
-
 
     fun addDeleteFavorite(beerPresentationModelItem: BeerPresentationModelItem,isFavorite:Boolean) =
         viewModelScope.launch {

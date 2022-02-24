@@ -67,6 +67,6 @@ class BeerListAdapter(private val onBeerClickListener: OnBeerClickListener,
             oldItem: BeerPresentationModelItem,
             newItem: BeerPresentationModelItem
         ): Boolean =
-            oldItem == newItem
+            oldItem.id == newItem.id
     }
 }

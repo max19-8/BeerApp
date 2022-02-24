@@ -14,6 +14,12 @@
         android:layout_gravity="center"
         android:background="@drawable/border_beer_image"
         android:contentDescription="@string/image_pop_up_description" />
+    <ProgressBar
+        android:id="@+id/loading_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+
     <TextView
         android:id="@+id/text_view_name_beer_pop_up"
         android:layout_width="match_parent"
@@ -23,6 +29,7 @@
         android:textColor="@color/white"
         tools:text="NAME"
         android:textSize="16sp" />
+
 
     <TextView
         android:id="@+id/text_view_alcohol_content_beer_pop_up"

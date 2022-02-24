@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".presentation.ui.DetailFragment">
 
     <TextView
@@ -28,37 +28,56 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_view_description" />
 
-    <ImageView
-        android:id="@+id/image_view_detail"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_margin="@dimen/small_margin"
-        android:adjustViewBounds="true"
-        android:background="@drawable/border_beer_image"
-        android:scaleType="centerInside"
-        android:src="@mipmap/ic_launcher"
+    <FrameLayout
+        android:id="@+id/container_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view"
-        android:contentDescription="@string/image_beer_detail_description" />
+        app:layout_constraintTop_toBottomOf="@+id/view">
+
+        <ImageView
+            android:id="@+id/image_view_detail"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/border_beer_image"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginStart="@dimen/app_margin"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:src="@mipmap/ic_launcher"
+            android:contentDescription="@string/image_beer_detail_description" />
+
+        <ImageView
+            android:id="@+id/favorite_image_view"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_favorite_like24"
+            android:visibility="invisible"
+            android:layout_gravity="end"
+            android:layout_margin="@dimen/small_margin"
+            app:layout_constraintStart_toEndOf="@+id/image_view_detail"
+            app:layout_constraintTop_toBottomOf="@+id/hydrogen_index_text_view_detail" />
+    </FrameLayout>
 
     <TextView
         android:id="@+id/text_view_detail_name"
-        app:layout_constraintStart_toEndOf="@id/image_view_detail"
+        app:layout_constraintStart_toEndOf="@id/container_image_view"
         app:layout_constraintTop_toBottomOf="@+id/view"
+        android:layout_marginEnd="@dimen/small_margin"
         tools:color = "@color/black"
         tools:text="Name"
         style="@style/text_view_detail" />
 
     <TextView
         android:id="@+id/strength_beer_text_view_detail"
-        app:layout_constraintStart_toEndOf="@id/image_view_detail"
+        app:layout_constraintStart_toEndOf="@id/container_image_view"
         app:layout_constraintTop_toBottomOf="@id/text_view_detail_name"
         tools:text="alcohol content:"
         style="@style/text_view_detail" />
 
     <TextView
         android:id="@+id/hydrogen_index_text_view_detail"
-        app:layout_constraintStart_toEndOf="@id/image_view_detail"
+        app:layout_constraintStart_toEndOf="@id/container_image_view"
         app:layout_constraintTop_toBottomOf="@+id/strength_beer_text_view_detail"
         tools:text="hydrogen index:"
         style="@style/text_view_detail" />
@@ -69,8 +88,7 @@
         android:layout_marginHorizontal="@dimen/app_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/image_view_detail"
+        app:layout_constraintTop_toBottomOf="@id/container_image_view"
         tools:text="description"
         style="@style/text_view_detail" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
