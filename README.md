@@ -1,6 +1,8 @@
 # BeerApp
 стажировка
-Приложение работает с апи сайта https://api.punkapi.com/.
+Приложение работает с апи сайта https://api.punkapi.com/
+
+
 Retrofit,Jetpack Paging 3,Glide,Koin,Room,SplashScreenApi
 
 
