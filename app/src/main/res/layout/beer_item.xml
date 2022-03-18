@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/app_margin"
+    android:layout_marginVertical="@dimen/small_margin"
+    android:backgroundTint="@color/grey"
+    app:cardCornerRadius="@dimen/card_view_corner">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/beer_image"
+            android:layout_width="@dimen/image_view_size"
+            android:layout_height="@dimen/image_view_size"
+            android:contentDescription="@string/image_beer_description"
+            android:layout_marginVertical="@dimen/small_margin"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"
+            tools:src="@mipmap/ic_launcher"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/beer_name_text_view"
+            app:layout_constraintStart_toEndOf="@+id/beer_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Заголовок"
+            style="@style/text_view_beer_item_style" />
+
+        <TextView
+            android:id="@+id/strength_beer_text_view"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/beer_image"
+            app:layout_constraintTop_toBottomOf="@id/beer_name_text_view"
+            tools:text="Содержание алкоголя"
+            style="@style/text_view_beer_item_style"/>
+
+        <ToggleButton
+            android:id="@+id/like_button"
+            android:layout_width="36dp"
+            android:textOff=""
+            android:textOn=""
+            android:layout_height="36dp"
+            android:layout_margin="@dimen/app_margin"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:background="@drawable/favorite_selector"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

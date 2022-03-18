@@ -3,7 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/MegaUser/AndroidStudioProjects/BeerApp/app/src/main/res/layout/fragment_detail.xml" value="0.3619791666666667" />
+        <entry key="..\:/Users/MegaUser/AndroidStudioProjects/BeerApp/app/src/main/res/layout/fragment_dialog_random.xml" value="0.3619791666666667" />
+        <entry key="..\:/Users/MegaUser/AndroidStudioProjects/BeerApp/app/src/main/res/layout/fragment_list_beer.xml" value="0.32407407407407407" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/BeerApp/app/src/main/res/drawable/background_dialog_fragment.xml" value="0.138" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/BeerApp/app/src/main/res/drawable/favorite_selector.xml" value="0.2315" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/BeerApp/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.2315" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/BeerApp/app/src/main/res/drawable/ic_favorite_like24.xml" value="0.2315" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/BeerApp/app/src/main/res/drawable/ic_favorite_not_like.xml" value="0.2315" />
         <entry key="..\:/Users/user/AndroidStudioProjects/BeerApp/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/BeerApp/app/src/main/res/layout/beer_item.xml" value="0.1" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/BeerApp/app/src/main/res/layout/fragment_dialog_random.xml" value="0.33" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/BeerApp/app/src/main/res/layout/fragment_list_beer.xml" value="0.18" />
       </map>
     </option>
   </component>
