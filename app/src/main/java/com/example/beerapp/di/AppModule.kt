@@ -4,6 +4,7 @@ package com.example.beerapp.di
 import android.app.Application
 import androidx.room.Room
 import com.example.beerapp.data.api.ApiService
+import com.example.beerapp.database.CacheDataSource
 import com.example.beerapp.database.FavoriteBeerDao
 import com.example.beerapp.database.FavoriteBeerDatabase
 import okhttp3.OkHttpClient
@@ -40,11 +41,10 @@ private fun provideRetrofit(
 private fun provideApiService(retrofit: Retrofit): ApiService =
     retrofit.create(ApiService::class.java)
 
-    fun provideDataBase(application: Application): FavoriteBeerDatabase {
-        return Room.databaseBuilder(application, FavoriteBeerDatabase::class.java, "BEERS_DB")
-            .build()
+    fun provideDataBase(application: Application): CacheDataSource {
+        return CacheDataSource.Base(application)
     }
 
-    fun provideDao(dataBase: FavoriteBeerDatabase): FavoriteBeerDao {
-        return dataBase.favoriteBeersDao()
+    fun provideDao(dataBase: CacheDataSource): FavoriteBeerDao {
+        return dataBase.getBeerDao()
     }
